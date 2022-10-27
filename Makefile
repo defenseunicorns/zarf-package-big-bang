@@ -26,10 +26,10 @@ clean: ## Clean up build files
 .PHONY: all
 all: | build/zarf-package-big-bang-amd64.tar.zst 
 
-build:
+mkdir:
 	@mkdir -p build
 
-build/zarf-package-big-bang-amd64.tar.zst: build
+build: mkdir
 	@echo "Creating the deploy package"
 	@$(ZARF_BIN) package create --skip-sbom --confirm
 	@mv zarf-package-big-bang-amd64.tar.zst build/zarf-package-big-bang-amd64.tar.zst
