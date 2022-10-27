@@ -400,23 +400,9 @@ twistlock:
   # Disabling Twistlock for now since Big Bang now needs a license to be specified for Twistlock to initialize successfully. Will re-evaluate turning it back on later, or possibly swap it out for Neuvector once that becomes available.
   enabled: false
 
-#####################################################################################################################
-# Day2 Updates. After Keycloak is up and running. Gather SSO-related information e.g. JWKS, realm, host, CA Cert,
-# etc and edit this following section
-#####################################################################################################################
-#sso:
-#  oidc:
-#    host: keycloak.bigbang.dev
-#    realm: myrealm
-#  token_url: "https://{{ .Values.sso.oidc.host }}/auth/realms/{{ .Values.sso.oidc.realm }}/protocol/openid-connect/token"
-#  auth_url: "https://{{ .Values.sso.oidc.host }}/auth/realms/{{ .Values.sso.oidc.realm }}/protocol/openid-connect/auth"
-#  # CHANGEME: Add a valid JWKS key here
-#  jwks: 'CHANGEME-JWKS-KEY'
-#  certificate_authority: |
-#    -----BEGIN CERTIFICATE-----
-#    ...
-#    -----END CERTIFICATE-----
-#####################################################################################################################
+sso:
+  oidc:
+    host: keycloak.bigbang.dev
 
 addons:
 #####################################################################################################################
