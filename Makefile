@@ -23,12 +23,11 @@ help: ## Show a list of all targets
 clean: ## Clean up build files
 	@rm -rf ./build
 
-.PHONY: all
-all: | build
-
+.PHONY: mkdir
 mkdir:
 	@mkdir -p build
 
+.PHONY: build
 build: mkdir ## Build the Big Bang Zarf Package 
 	@echo "Creating the deploy package"
 	@$(ZARF_BIN) package create --skip-sbom --confirm

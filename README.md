@@ -8,7 +8,7 @@ Pre-built Zarf Package of Big Bang core. The current version of Big Bang support
 ## Build the package
 
 ```
-$ make all
+$ make build
 ...
 $ ls -l build/
 total 2499764
