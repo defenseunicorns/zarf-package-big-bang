@@ -1,0 +1,28 @@
+name: Check for updates
+
+on:
+  schedule:
+  - cron: 0 0 * * *
+
+jobs:
+  check:
+    name: "Check for Big Bang Update"
+    runs-on: "ubuntu-20.04"
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Deps
+      run: "apt update && apt install -y jq curl"
+    - name: Check if BB update is available
+      run: |
+             chmod +x "${GITHUB_WORKSPACE}/utils/check-bb-update.sh"
+             ${GITHUB_WORKSPACE}/utils/check-bb-update.sh
+    - name: Generate Zarf.yaml
+      run: "echo helloworld >> /tmp/zarf.yaml "
+    - name: Create a PR with Updates
+      uses: technote-space/create-pr-action@v2
+      with:
+        COMMIT_MESSAGE: 'chore: new update to bigbang'
+        COMMIT_NAME: 'GitHub Actions'
+        COMMIT_EMAIL: 'example@example.com'
+        PR_BRANCH_NAME: 'chore-bb-update-${PR_ID}'
+        PR_TITLE: 'chore: update bb'
