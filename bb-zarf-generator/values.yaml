@@ -1,0 +1,91 @@
+addons:
+  anchore:
+    enabled: true
+  argocd:
+    enabled: true
+  authservice:
+    enabled: true
+  gitlab:
+    enabled: true
+  gitlabRunner:
+    enabled: true
+  keycloak:
+    enabled: true
+  mattermost:
+    enabled: true
+  mattermostoperator:
+    enabled: true
+  metricsServer:
+    enabled: true
+  minio:
+    enabled: true
+  minioOperator:
+    enabled: true
+  nexus:
+    enabled: true
+  sonarqube:
+    enabled: true
+  twistlock:
+    enabled: true
+  vault:
+    enabled: true
+  velero:
+    enabled: true
+    plugins:
+    - aws
+
+clusterAuditor:
+  enabled: true
+
+istio:
+  enabled: true
+  injection:
+    enabled: "disabled"
+
+istiooperator:
+  enabled: true
+
+eckoperator:
+  enabled: true
+
+fluentbit:
+  enabled: true
+
+gatekeeper:
+  enabled: true
+
+jaeger:
+  enabled: true
+
+kiali:
+  enabled: true
+
+kyverno:
+  enabled: true
+
+kyvernopolicies:
+  enabled: true
+
+kyvernoreporter:
+  enabled: true
+
+logging:
+  enabled: true
+
+loki:
+  enabled: true
+
+monitoring:
+  enabled: true
+  sso:
+    enabled: true
+  istio:
+    injection: "disabled"
+
+promtail:
+  enabled: true
+
+tempo:
+  enabled: true
+
+offline: false
