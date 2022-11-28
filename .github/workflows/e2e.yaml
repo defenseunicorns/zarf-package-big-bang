@@ -1,0 +1,26 @@
+name: Run e2e test
+
+on:
+  schedule:
+  - cron: 0 0 * * *
+
+jobs:
+  k3s-e2e:
+    name: "Run e2e test"
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install pipeline tools
+        uses: ./.github/actions/install-tools
+
+      - name: Setup K3d
+        uses: ./.github/actions/k3d
+
+      - name: Run e2e
+        run: |
+          kubectl cluster-info
+          kubectl get nodes
+          kubectl get pods -A
+          echo "current-context:" $(kubectl config current-context)
