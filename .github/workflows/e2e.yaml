@@ -15,12 +15,16 @@ jobs:
       - name: Install pipeline tools
         uses: ./.github/actions/install-tools
 
+      - name: Install Zarf
+        uses: defenseunicorns/setup-zarf@main
+        with:
+          version: v0.22.2
+
+      - name: Create the package
+        run: make build
+
       - name: Setup K3d
         uses: ./.github/actions/k3d
 
       - name: Run e2e
-        run: |
-          kubectl cluster-info
-          kubectl get nodes
-          kubectl get pods -A
-          echo "current-context:" $(kubectl config current-context)
+        run: make test

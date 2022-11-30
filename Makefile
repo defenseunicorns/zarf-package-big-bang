@@ -1,13 +1,3 @@
-# The version of Big Bang to use.
-BIGBANG_VERSION := 1.46.0
-
-# The version of Zarf to use. To keep this repo as portable as possible the Zarf binary will be downloaded and added to
-# the build folder.
-ZARF_VERSION := v0.21.3
-
-# Figure out which Zarf binary we should use based on the operating system we are on
-ZARF_BIN := zarf
-
 .DEFAULT_GOAL := help
 
 # Idiomatic way to force a target to always run, by having it depend on this dummy target
@@ -23,11 +13,10 @@ help: ## Show a list of all targets
 clean: ## Clean up build files
 	@rm -rf ./build zarf-sbom
 
-mkdir: 
-	@mkdir -p build
-
 .PHONY: build
-build: mkdir ## Build the Big Bang Zarf Package
-	@echo "Creating the deploy package"
-	@$(ZARF_BIN) package create --skip-sbom --set BIGBANG_VERSION=$(BIGBANG_VERSION) --confirm
-	@mv zarf-package-big-bang-amd64.tar.zst build/zarf-package-big-bang-amd64.tar.zst
+build: ## Build the Big Bang Zarf package
+	./scripts/build.sh
+
+.PHONY: test
+test: ## Run e2e test of the package
+	./scripts/tests.sh
