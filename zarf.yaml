@@ -128,7 +128,7 @@ components:
 
   - name: big-bang-storage
     description: "Git repositories and OCI images need for Big Bang storage"
-    required: true
+    required: false
     repos:
       - https://repo1.dso.mil/platform-one/big-bang/apps/application-utilities/minio-operator.git@4.5.3-bb.0
       - https://repo1.dso.mil/platform-one/big-bang/apps/application-utilities/minio.git@4.5.3-bb.1
