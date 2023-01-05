@@ -1,13 +1,15 @@
 # zarf-package-big-bang
-Pre-built Zarf Package of Big Bang core. The current version of Big Bang supported is 1.46.0
+
+Pre-built Zarf Package of [DoD-Platform-One/big-bang](https://github.com/DoD-Platform-One/big-bang) core. The current version of Big Bang supported is 1.46.0
 
 ## Prerequisites
-- Zarf is installed. Current version used is: [v0.21.3](https://github.com/defenseunicorns/zarf/releases/tag/v0.21.3)
+
+- Zarf is installed. The current version used is: [v0.21.3](https://github.com/defenseunicorns/zarf/releases/tag/v0.21.3)
 - Optional: A working Kubernetes cluster. e.g KinD, k3d, k3s, etc. If necessary, Zarf can be used to deploy a built-in k3s distribution.
 
 ## Build the package
 
-```
+``` bash
 $ make build
 ...
 $ ls -l build/
@@ -17,25 +19,28 @@ $
 ```
 
 ## Deploy the package
+
 1. Download and deploy Zarf's init package.
-```
-$ zarf package deploy ~/Downloads/zarf-init-amd64.tar.zst --components git-server --confirm
+
+``` bash
+zarf package deploy ~/Downloads/zarf-init-amd64.tar.zst --components git-server --confirm
 ```
 
 Optionally, if a Kubernetes cluster is not installed, we can tell Zarf to install one for us:
 
-```
+``` bash
 zarf package deploy ~/Downloads/zarf-init-amd64.tar.zst --components k3s,git-server --confirm
 ```
 
 2. Deploy the Big Bang package created in the Build step above:
-```
+
+``` bash
 zarf package deploy ./build/zarf-package-big-bang-amd64.tar.zst --confirm
 ```
 
-Check whether the deployement succeeded. If the deployment is successful, then you should see this message from the HelmRelease resource in the cluster.
+Check whether the deployment succeeded. If the deployment is successful, then you should see this message from the HelmRelease resource in the cluster.
 
-```
+``` bash
 $ kubectl get helmrelease -A
 bigbang     bigbang           72m   True    Release reconciliation succeeded
 bigbang     cluster-auditor   71m   True    Release reconciliation succeeded
@@ -53,7 +58,8 @@ bigbang     monitoring        71m   True    Release reconciliation succeeded
 bigbang     promtail          71m   True    Release reconciliation succeeded
 ```
 
-## Day 2.
+## Day 2
+
 ### Enable SSO
 
 Navigate to the Day 2 sections of the `kustomizations/values.yaml` file and fill in the details in the `sso` and `authservice` sections to
